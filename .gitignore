@@ -1,0 +1,17 @@
+*.py[co]
+__pycache__/*
+# VIM: Swap files
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+
+*~
+db.sqlite3
+static/*
+.idea
+.project
+.settings/
+.pydevproject
+*.log*
+*DS_Store
