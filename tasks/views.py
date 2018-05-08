@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 
-# Create your views here.
+from rest_framework import viewsets
+from rest_framework.response import Response
+
+from tasks.models import Tasks
+from tasks.serializers import TaskSerializer
+
+class TaskViewSet(viewsets.ViewSet):
+
+    def list(self, *args, **kwargs):
+        queryset = Tasks.objects.all()
+        task_serializer = TaskSerializer(queryset, many=True)
+        return Response(task_serializer.data)
+
