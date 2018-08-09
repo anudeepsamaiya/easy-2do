@@ -1,9 +1,10 @@
 from django.db import models
-#  from django.contrib.auth.models import (
-#      AbstractUser, BaseUserManager
-#  )
-#
-#  # Create your models here.
+
+from django.contrib.auth.models import (
+    AbstractUser, BaseUserManager,
+    User
+)
+
 #
 #  class User(AbstractUser):
 #      identifier = models.CharField(unique=True, max_length=10)
