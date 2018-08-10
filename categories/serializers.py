@@ -9,7 +9,19 @@ class CategorySerializer(serializers.Serializer):
 
     class Meta:
         model = Category
-        fields = ['name', 'code']
+        fields = ['name', 'code',]
+
+    def validate_name(self, name):
+        return name and name.title()
+
+    def validate_code(self, code):
+        return code and code.upper()
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.code = validated_data.get('code', instance.code)
+        instance.save()
+        return instance
 
     def create(self, validated_data):
         return Category.objects.create(**validated_data)
@@ -22,3 +34,18 @@ class SubCategorySerializer(serializers.Serializer):
     class Meta:
         model = SubCategory
         fields = []
+
+    def validate_name(self, name):
+        return name and name.title()
+
+    def validate_code(self, code):
+        return code and code.upper()
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.code = validated_data.get('code', instance.code)
+        instance.save()
+        return instance
+
+    def create(self, validated_data):
+        return SubCategory.objects.create(**validated_data)
