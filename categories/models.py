@@ -25,5 +25,5 @@ class SubCategory(models.Model):
 
     class Meta:
         db_table = 'SubCategory'
-        verbose_name = 'SubCategory'
-        verbose_name_plural = 'SubCategories'
+        verbose_name = 'Sub Category'
+        verbose_name_plural = 'Sub Categories'
