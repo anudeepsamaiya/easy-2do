@@ -6,10 +6,11 @@ from .models import Category, SubCategory
 class CategorySerializer(serializers.Serializer):
     name = serializers.CharField()
     code = serializers.CharField()
+    sub_categories = serializers.StringRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Category
-        fields = ['name', 'code',]
+        fields = ['name', 'code']
 
     def validate_name(self, name):
         return name and name.title()
@@ -30,6 +31,8 @@ class CategorySerializer(serializers.Serializer):
 class SubCategorySerializer(serializers.Serializer):
     name = serializers.CharField()
     code = serializers.CharField()
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all(),
+            allow_null=True)
 
     class Meta:
         model = SubCategory
