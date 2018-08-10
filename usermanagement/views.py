@@ -8,7 +8,7 @@ from usermanagement.serializers import UserSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
-    serializer_class = UserSerializer()
+    serializer_class = UserSerializer
 
     def create(self, *args, **kwargs):
         return super(UserViewSet, self).create(*args, **kwargs)
