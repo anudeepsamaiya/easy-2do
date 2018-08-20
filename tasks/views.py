@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from rest_framework.response import Response
 
 from django_filters.rest_framework import DjangoFilterBackend
@@ -7,7 +7,10 @@ from .models import Task
 from .serializers import TaskSerializer
 
 class TaskViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.all()
+    queryset = Task.objects.filter()
     serializer_class = TaskSerializer
-    filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('ref_id', 'title', 'description', 'parent')
+    filter_backends = (filters.SearchFilter, DjangoFilterBackend,
+            filters.OrderingFilter,)
+    filter_fields = ('title', 'description', 'parent')
+    search_fields = ('ref_id', 'title', 'parent')
+    ordering_fields = ('due_date', 'created')
