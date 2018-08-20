@@ -7,7 +7,7 @@ class TaskSerializer(serializers.Serializer):
     ref_id = serializers.CharField(read_only=True)
     title = serializers.CharField()
     description = serializers.CharField()
-    due_date = serializers.DateTimeField()
+    due_date = serializers.DateField()
     task_status = serializers.PrimaryKeyRelatedField(queryset=TaskStatus.objects.all())
     parent = serializers.PrimaryKeyRelatedField(
             queryset=Task.objects.filter(parent__isnull=True), allow_null=True)
@@ -17,6 +17,13 @@ class TaskSerializer(serializers.Serializer):
         fields = []
 
     def update(self, instance, validated_data):
+        instance.title = validated_data.get('title', instance.title)
+        instance.description = validated_data.get('description',
+                instance.description)
+        instance.due_date = validated_data.get('due_date', instance.due_date)
+        instance.task_status = validated_data.get('task_status',
+                instance.task_status)
+        instance.parent = validated_data.get('parent', instance.parent)
         instance.save()
         return instance
 

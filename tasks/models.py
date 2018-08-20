@@ -48,7 +48,7 @@ class Task(AbstractTask):
             related_name='reported_tasks')
     assignee = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
             related_name='assigned_tasks')
-    due_date = models.DateTimeField(null=True)
+    due_date = models.DateField(null=True)
     parent = models.ForeignKey(to='self', on_delete=models.CASCADE,
             related_name='subtask', to_field='ref_id', null=True)
 
