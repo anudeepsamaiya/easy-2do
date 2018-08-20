@@ -29,3 +29,24 @@ class TaskSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         return Task.objects.create(**validated_data)
+
+
+class TaskStatusSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    code = serializers.CharField()
+
+    class Meta:
+        model = TaskStatus
+        fields = []
+
+    def validate_name(self, name):
+        return name and name.title()
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.code = validated_data.get('code', instance.code)
+        instance.save()
+        return instance
+
+    def create(self, validated_data):
+        return TaskStatus.objects.create(**validated_data)
