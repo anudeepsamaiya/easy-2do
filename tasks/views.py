@@ -1,15 +1,13 @@
-from django.shortcuts import get_object_or_404
-
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from tasks.models import Task
-from tasks.serializers import TaskSerializer
+from django_filters.rest_framework import DjangoFilterBackend
 
-class TaskViewSet(viewsets.ViewSet):
+from .models import Task
+from .serializers import TaskSerializer
 
-    def list(self, *args, **kwargs):
-        queryset = Task.objects.all()
-        task_serializer = TaskSerializer(queryset, many=True)
-        return Response(task_serializer.data)
-
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('ref_id', 'title', 'description', 'parent')
