@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'usermanagement',
     'tasks',
     'categories',
+    'alerts',
+    'commons',
 ]
 
 MIDDLEWARE = [
