@@ -83,6 +83,8 @@ DATABASES = {
     }
 }
 
+#  https://docs.djangoproject.com/en/dev/topics/auth/customizing/#auth-custom-user
+AUTH_USER_MODEL = 'usermanagement.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
