@@ -1,6 +1,9 @@
 from django.db import models
 from django_extensions.db import models as model_extensions
+
+from commons.models import Alert
 from usermanagement.models import User
+
 
 class TaskStatus(models.Model):
     code = models.IntegerField(unique=True)
@@ -47,15 +50,9 @@ class Task(AbstractTask):
         verbose_name_plural = 'Tasks'
 
 
-#  class SubTask(AbstractTask):
-#      parent = models.ForeignKey(to=Task, on_delete=models.CASCADE, related_name='subtask')
-#      reporter = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
-#              related_name='reported_sub_tasks')
-#      assignee = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
-#              related_name='assigned_sub_tasks')
-#      due_date = models.DateTimeField(null=True)
-#
-#      class Meta:
-#          db_table = 'SubTask'
-#          verbose_name = 'SubTask'
-#          verbose_name_plural = 'SubTasks'
+class TaskAlert(Alert):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE,
+            related_name='alerts')
+
+    class Meta:
+        db_table = 'TaskAlert'
