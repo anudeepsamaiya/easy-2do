@@ -38,6 +38,8 @@ class Task(AbstractTask):
     assignee = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
             related_name='assigned_tasks')
     due_date = models.DateTimeField(null=True)
+    parent = models.ForeignKey(to='self', on_delete=models.CASCADE,
+            related_name='subtask', to_field='ref_id', null=True)
 
     class Meta:
         db_table = 'Task'
@@ -45,15 +47,15 @@ class Task(AbstractTask):
         verbose_name_plural = 'Tasks'
 
 
-class SubTask(AbstractTask):
-    parent = models.ForeignKey(to=Task, on_delete=models.CASCADE, related_name='subtask')
-    reporter = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
-            related_name='reported_sub_tasks')
-    assignee = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
-            related_name='assigned_sub_tasks')
-    due_date = models.DateTimeField(null=True)
-
-    class Meta:
-        db_table = 'SubTask'
-        verbose_name = 'SubTask'
-        verbose_name_plural = 'SubTasks'
+#  class SubTask(AbstractTask):
+#      parent = models.ForeignKey(to=Task, on_delete=models.CASCADE, related_name='subtask')
+#      reporter = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
+#              related_name='reported_sub_tasks')
+#      assignee = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
+#              related_name='assigned_sub_tasks')
+#      due_date = models.DateTimeField(null=True)
+#
+#      class Meta:
+#          db_table = 'SubTask'
+#          verbose_name = 'SubTask'
+#          verbose_name_plural = 'SubTasks'
