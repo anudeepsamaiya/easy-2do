@@ -1,8 +1,9 @@
 from django.db import models
+from django_extensions.db import models as model_extensions
 from usermanagement.models import User
 
 class TaskStatus(models.Model):
-    code = models.IntegerField()
+    code = models.IntegerField(unique=True)
     name = models.CharField(unique=True, max_length=8)
 
     def __str__(self):
