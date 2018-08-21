@@ -1,0 +1,26 @@
+[
+{
+  "model": "categories.category",
+  "pk": 1,
+  "fields": {
+    "name": "Important",
+    "code": "IMP"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 2,
+  "fields": {
+    "name": "Color",
+    "code": "CLR"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 3,
+  "fields": {
+    "name": "Gender",
+    "code": "G"
+  }
+}
+]

@@ -1,0 +1,20 @@
+[
+{
+  "model": "categories.subcategory",
+  "pk": 1,
+  "fields": {
+    "name": "Male",
+    "code": "M",
+    "category": 3
+  }
+},
+{
+  "model": "categories.subcategory",
+  "pk": 2,
+  "fields": {
+    "name": "Female",
+    "code": "M",
+    "category": 3
+  }
+}
+]

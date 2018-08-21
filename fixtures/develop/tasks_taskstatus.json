@@ -1,0 +1,10 @@
+[
+{
+  "model": "tasks.taskstatus",
+  "pk": 1,
+  "fields": {
+    "code": 0,
+    "name": "STATUS_PENDING"
+  }
+}
+]
