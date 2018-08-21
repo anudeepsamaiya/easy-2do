@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from django_extensions.db import models as model_extensions
 
@@ -36,6 +38,12 @@ class AbstractTask(model_extensions.TitleSlugDescriptionModel,
 
 
 class Task(AbstractTask):
+    def generate_task_ref_id(initial='task-', *args, **kwargs):
+        ts = str(datetime.today().strftime('%Y%m%d:%H%M%S'))
+        return initial + ts
+
+    ref_id = models.CharField(unique=True, max_length=13,
+            default=generate_task_ref_id)
     reporter = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
             related_name='reported_tasks')
     assignee = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
@@ -46,8 +54,6 @@ class Task(AbstractTask):
 
     class Meta:
         db_table = 'Task'
-        verbose_name = 'Task'
-        verbose_name_plural = 'Tasks'
 
 
 class TaskAlert(Alert):
