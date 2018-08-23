@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -131,5 +132,6 @@ STATIC_URL = '/static/'
 
 try:
     from todo.local_settings import *
+    INSTALLED_APPS.append('debug_toolbar')
 except ImportError:
     pass
