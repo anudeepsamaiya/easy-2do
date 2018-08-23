@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  web:
+    build:
+        context: .
+        dockerfile: ./deploy/Dockerfile
+    command: python /Project/app/manage.py migrate --noinput
+    command: python /Project/app/manage.py loaddata /Project/app/fixtures/develop
+    command: python /Project/app/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app:/Project/app
+    ports:
+      - 8000:8000
+    environment:
+      - SECRET_KEY="changemeinprod"
