@@ -6,6 +6,12 @@ __pycache__/*
 [._]s[a-v][a-z]
 [._]sw[a-p]
 
+#pytest cache
+*.pytest_cache/
+*.cov
+*.coverage
+*htmlcov/
+
 *~
 db.sqlite3
 static/*
