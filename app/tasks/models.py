@@ -1,4 +1,5 @@
 from datetime import datetime
+from random import randint
 
 from django.db import models
 from django_extensions.db import models as model_extensions
@@ -40,7 +41,8 @@ class AbstractTask(model_extensions.TitleSlugDescriptionModel,
 class Task(AbstractTask):
     def generate_task_ref_id(initial='task-', *args, **kwargs):
         ts = str(datetime.today().strftime('%Y%m%d:%H%M%S'))
-        return initial + ts
+        postfix = str(kwargs.get('postfix', '')) or str(randint(2,100))
+        return initial + ts + postfix
 
     ref_id = models.CharField(unique=True, max_length=13,
             default=generate_task_ref_id)
@@ -50,7 +52,9 @@ class Task(AbstractTask):
             related_name='assigned_tasks')
     due_date = models.DateField(null=True)
     parent = models.ForeignKey(to='self', on_delete=models.CASCADE,
-            related_name='subtask', to_field='ref_id', null=True)
+            related_name='subtask', to_field='ref_id', null=True,
+            limit_choices_to={'parent__isnull':True},
+        )
 
     class Meta:
         db_table = 'Task'
