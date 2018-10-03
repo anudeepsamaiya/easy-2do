@@ -13,6 +13,7 @@ djangorestframework-filters = "*"
 [dev-packages]
 django-debug-toolbar="*"
 pytest = "*"
+pytest-cov = "*"
 mixer = "*"
 
 [requires]
