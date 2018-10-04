@@ -12,9 +12,13 @@ djangorestframework-filters = "*"
 
 [dev-packages]
 django-debug-toolbar="*"
+mixer = "*"
 pytest = "*"
 pytest-cov = "*"
-mixer = "*"
+pytest-django = "*"
 
 [requires]
 python_version = "3.6"
+
+[pipenv]
+allow_prereleases = true
