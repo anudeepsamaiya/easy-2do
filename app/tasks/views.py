@@ -11,6 +11,6 @@ class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     filter_backends = (filters.SearchFilter, DjangoFilterBackend,
             filters.OrderingFilter,)
-    filter_fields = ('title', 'description', 'parent')
+    filterset_fields = ('title', 'description', 'parent')
     search_fields = ('ref_id', 'title', 'parent')
     ordering_fields = ('due_date', 'created')
