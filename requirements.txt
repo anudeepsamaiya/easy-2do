@@ -2,5 +2,5 @@ Django==2.0.5
 django-extensions==2.1.0
 django-filter==1.1.0
 djangorestframework-filters==0.10.2
-djangorestframework==3.8.2
+djangorestframework==3.11.2
 pytest==3.7.2
